@@ -25,10 +25,10 @@ class CompilerEngine extends BaseCompilerEngine
         $dynamicViews = Session::get('google_optimize_experiments', []);
 
         if (method_exists($this->compiler, 'setDynamicViews')) {
-            $this->compiler->setDynamicViews($dynamicViews['views']);
+            $this->compiler->setDynamicViews($dynamicViews['views'] ?? []);
         }
 
-        $this->dynamicViews = $dynamicViews['views'];
+        $this->dynamicViews = $dynamicViews['views'] ?? [];
     }
 
     /**
