@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+/**
+ * Class CreateGoogleOptimizeVariationsTables.
+ */
+class CreateGoogleOptimizeVariationsTables extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::create('google_optimize_variations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('value');
+            $table->string('experiment_id');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::dropIfExists('google_optimize_variations');
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "inetstudio/google-optimize",
+  "description": "Package for google optimize",
+  "homepage": "https://github.com/inetstudio/google-optimize",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Konstantin Bukin",
+      "email": "bukin@inetstudio.ru"
+    }
+  ],
+  "require": {
+    "inetstudio/admin-panel": "^6.0",
+    "spatie/data-transfer-object": "^1.13"
+  },
+  "autoload": {
+    "psr-4": {
+      "InetStudio\\GoogleOptimizePackage\\": "package/src",
+      "InetStudio\\GoogleOptimizePackage\\Experiments\\": "entities/experiments/src",
+      "InetStudio\\GoogleOptimizePackage\\Variations\\": "entities/variations/src",
+      "InetStudio\\GoogleOptimizePackage\\Views\\": "entities/views/src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "InetStudio\\GoogleOptimizePackage\\Providers\\ServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\BindingsServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\ServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\ViewServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Variations\\Providers\\BindingsServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Variations\\Providers\\ServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Views\\Providers\\BindingsServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Views\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}
