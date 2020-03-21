@@ -17,6 +17,7 @@
     "psr-4": {
       "InetStudio\\GoogleOptimizePackage\\": "package/src",
       "InetStudio\\GoogleOptimizePackage\\Experiments\\": "entities/experiments/src",
+      "InetStudio\\GoogleOptimizePackage\\Pages\\": "entities/pages/src",
       "InetStudio\\GoogleOptimizePackage\\Variations\\": "entities/variations/src",
       "InetStudio\\GoogleOptimizePackage\\Views\\": "entities/views/src"
     }
@@ -28,6 +29,8 @@
         "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\BindingsServiceProvider",
         "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\ServiceProvider",
         "InetStudio\\GoogleOptimizePackage\\Experiments\\Providers\\ViewServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Pages\\Providers\\BindingsServiceProvider",
+        "InetStudio\\GoogleOptimizePackage\\Pages\\Providers\\ServiceProvider",
         "InetStudio\\GoogleOptimizePackage\\Variations\\Providers\\BindingsServiceProvider",
         "InetStudio\\GoogleOptimizePackage\\Variations\\Providers\\ServiceProvider",
         "InetStudio\\GoogleOptimizePackage\\Views\\Providers\\BindingsServiceProvider",
