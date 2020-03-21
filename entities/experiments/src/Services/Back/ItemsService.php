@@ -75,8 +75,9 @@ class ItemsService implements ItemsServiceContract
         $item = null;
 
         $variationsService = app()->make('InetStudio\GoogleOptimizePackage\Variations\Contracts\Services\Back\ItemsServiceContract');
+        $pagesService = app()->make('InetStudio\GoogleOptimizePackage\Pages\Contracts\Services\Back\ItemsServiceContract');
 
-        $item = DB::transaction(function () use ($variationsService, $data) {
+        $item = DB::transaction(function () use ($variationsService, $pagesService, $data) {
             $item = $this->model::updateOrCreate(
                 [
                     'id' => $data->id,
@@ -98,6 +99,22 @@ class ItemsService implements ItemsServiceContract
                 $variation->experiment_id = $item->id;
 
                 $variationsService->save($variation);
+            }
+
+            $pagesIds = collect($data->only('pages')->toArray()['pages'])->pluck('id')->toArray();
+
+            $pagesService->getModel()
+                ->where('experiment_id', $data->id)
+                ->whereNotIn('id', $pagesIds)
+                ->get()
+                ->each(function ($page) use ($pagesService) {
+                    $pagesService->destroy($page['id']);
+                });
+
+            foreach ($data->pages as $page) {
+                $page->experiment_id = $item->id;
+
+                $pagesService->save($page);
             }
 
             event(

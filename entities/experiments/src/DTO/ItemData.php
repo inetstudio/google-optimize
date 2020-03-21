@@ -39,4 +39,9 @@ class ItemData extends FlexibleDataTransferObject implements ItemDataContract
      * @var \InetStudio\GoogleOptimizePackage\Variations\DTO\ItemData[]
      */
     public $variations;
+
+    /**
+     * @var \InetStudio\GoogleOptimizePackage\Pages\DTO\ItemData[]
+     */
+    public $pages;
 }

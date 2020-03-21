@@ -79,6 +79,16 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group row ">
+                                            <label class="col-sm-2 col-form-label font-bold">Страницы</label>
+                                            <div class="col-sm-10">
+                                                <pages-list
+                                                    v-bind:pages-prop="{{ json_encode($item['pages'] ?? []) }}"
+                                                    v-bind:experiment-id-prop="{{ $item['id'] ?? 0 }}"
+                                                />
+                                            </div>
+                                        </div>
+
                                         {!! Form::hidden('is_active', 0) !!}
                                         {!! Form::checks('is_active', $item['is_active'], [
                                             'label' => [

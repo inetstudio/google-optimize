@@ -33,7 +33,7 @@ window.Admin.vue.stores['google_optimize_variations'] = new Vuex.Store({
     reset(state) {
       state.mode = '';
       state.variation = {};
-      state.variationsValues = [];
+      state.variations = [];
     }
   },
 });

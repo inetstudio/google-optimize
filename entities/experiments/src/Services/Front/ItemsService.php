@@ -2,6 +2,7 @@
 
 namespace InetStudio\GoogleOptimizePackage\Experiments\Services\Front;
 
+use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\View\ViewName;
 use Illuminate\Support\Facades\Cookie;
@@ -32,8 +33,10 @@ class ItemsService implements ItemsServiceContract
 
     /**
      * Инициализируем A/B эксперименты.
+     *
+     * @param  Request  $request
      */
-    public function initialize(): void
+    public function initialize(Request $request): void
     {
         $items = $this->model->all();
 
@@ -43,9 +46,13 @@ class ItemsService implements ItemsServiceContract
         ];
 
         foreach ($items as $item) {
+            if (! $this->requestIsMatch($item, $request)) {
+                continue;
+            }
+
             $variation = $this->setCookie($item);
 
-            $views = $this->getViewsContent($variation);
+            $views = $this->getViewsContent($variation, $request);
             $experimentData = $this->getExperimentData($variation);
 
             if (! empty($views)) {
@@ -106,6 +113,27 @@ class ItemsService implements ItemsServiceContract
     protected function setSession(array $data)
     {
         Session::put('google_optimize_experiments', $data);
+    }
+
+    /**
+     * Проверяем, что эксперимент доступен для запроса.
+     *
+     * @param  ExperimentModelContract  $experiment
+     * @param  Request  $request
+     *
+     * @return bool
+     */
+    protected function requestIsMatch(ExperimentModelContract $experiment, Request $request): bool
+    {
+        $isMatch = $experiment->pages->count() == 0;
+
+        foreach ($experiment->pages as $page) {
+            if ($request->is(trim($page->additional_info['path'], '/'))) {
+                $isMatch = true;
+            }
+        }
+
+        return $isMatch;
     }
 
     /**

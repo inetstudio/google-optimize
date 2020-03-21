@@ -92,7 +92,7 @@
 
         if (existsIndex > -1) {
 
-          $(this.$refs.modal).modal('hide');
+          $(component.$refs.modal).modal('hide');
 
           return;
         } else if (component.variation.isModified && component.variation.model.value !== '') {
@@ -100,7 +100,7 @@
           window.Admin.vue.stores['google_optimize_variations'].commit('setMode', 'save_list_item');
         }
 
-        $(this.$refs.modal).modal('hide');
+        $(component.$refs.modal).modal('hide');
       },
       updateViews(payload) {
         this.variation.model.views = payload.views;

@@ -37,7 +37,7 @@ class EditResponse implements EditResponseContract
     {
         $id = $request->route('experiment', 0);
 
-        $item = $this->resourceService->getItemById($id)->load('variations', 'variations.views');
+        $item = $this->resourceService->getItemById($id)->load('variations', 'variations.views', 'pages');
 
         return response()->view('admin.module.google-optimize-package.experiments::back.pages.form', compact('item'));
     }

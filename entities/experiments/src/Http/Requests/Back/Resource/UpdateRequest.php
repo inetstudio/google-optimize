@@ -70,6 +70,7 @@ class UpdateRequest extends FormRequest implements UpdateRequestContract
                     'experiment_id' => trim(strip_tags($this->get('experiment_id'))),
                     'is_active' => (int) trim(strip_tags($this->get('is_active'))),
                     'variations' => json_decode($this->get('variations'), true),
+                    'pages' => json_decode($this->get('pages'), true),
                 ],
             ]
         );

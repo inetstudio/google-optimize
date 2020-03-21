@@ -33,7 +33,7 @@ window.Admin.vue.stores['google_optimize_views'] = new Vuex.Store({
     reset(state) {
       state.mode = '';
       state.view = {};
-      state.viewsNames = [];
+      state.views = [];
     }
   },
 });

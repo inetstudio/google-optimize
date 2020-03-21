@@ -38,7 +38,7 @@ class InitializeExperimentsMiddleware implements InitializeExperimentsMiddleware
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        $this->itemsService->initialize();
+        $this->itemsService->initialize($request);
 
         return $next($request);
     }

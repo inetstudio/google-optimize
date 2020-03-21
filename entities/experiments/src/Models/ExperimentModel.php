@@ -86,4 +86,22 @@ class ExperimentModel extends Model implements ExperimentModelContract
             'id'
         );
     }
+
+    /**
+     * Связь с моделью страниц.
+     *
+     * @return HasMany
+     *
+     * @throws BindingResolutionException
+     */
+    public function pages(): HasMany
+    {
+        $pageModel = app()->make('InetStudio\GoogleOptimizePackage\Pages\Contracts\Models\PageModelContract');
+
+        return $this->hasMany(
+            get_class($pageModel),
+            'experiment_id',
+            'id'
+        );
+    }
 }
