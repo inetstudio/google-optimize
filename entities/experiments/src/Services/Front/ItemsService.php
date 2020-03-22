@@ -52,7 +52,7 @@ class ItemsService implements ItemsServiceContract
 
             $variation = $this->setCookie($item);
 
-            $views = $this->getViewsContent($variation, $request);
+            $views = $this->getViewsContent($variation);
             $experimentData = $this->getExperimentData($variation);
 
             if (! empty($views)) {
