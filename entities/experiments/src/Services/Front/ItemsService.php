@@ -2,6 +2,7 @@
 
 namespace InetStudio\GoogleOptimizePackage\Experiments\Services\Front;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\View\ViewName;
@@ -128,7 +129,10 @@ class ItemsService implements ItemsServiceContract
         $isMatch = $experiment->pages->count() == 0;
 
         foreach ($experiment->pages as $page) {
-            if ($request->is(trim($page->additional_info['path'], '/'))) {
+            if (
+                $request->is(trim($page->additional_info['path'], '/'))
+                || $request->ajax() && Str::is(trim($page->additional_info['path'], '/'), trim($request->header('Referrer-Path', ''), '/'))
+            ) {
                 $isMatch = true;
             }
         }

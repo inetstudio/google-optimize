@@ -36,6 +36,11 @@ class SetupCommand extends BaseSetupCommand
             ],
             [
                 'type' => 'artisan',
+                'description' => 'Google optimize pages setup',
+                'command' => 'inetstudio:google-optimize-package:pages:setup',
+            ],
+            [
+                'type' => 'artisan',
                 'description' => 'Google optimize variations setup',
                 'command' => 'inetstudio:google-optimize-package:variations:setup',
             ],
