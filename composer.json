@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "inetstudio/admin-panel": "^6.0",
+    "inetstudio/admin-panel": "^7.0",
     "spatie/data-transfer-object": "^1.13"
   },
   "autoload": {
