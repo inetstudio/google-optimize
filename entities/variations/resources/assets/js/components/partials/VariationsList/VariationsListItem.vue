@@ -24,20 +24,8 @@
       },
     },
     methods: {
-      initVariationsComponent() {
-        if (typeof window.Admin.vue.modulesComponents.$refs['google_optimize_variations_VariationsListItemForm'] == 'undefined') {
-          window.Admin.vue.modulesComponents.modules.google_optimize_variations.components = _.union(
-              window.Admin.vue.modulesComponents.modules.google_optimize_variations.components,
-              [
-                {
-                  name: 'VariationsListItemForm',
-                  data: {},
-                },
-              ]);
-        }
-      },
       editVariation() {
-        this.initVariationsComponent();
+        window.Admin.vue.helpers.initComponent('google_optimize_variations', 'VariationsListItemForm', {});
 
         window.Admin.vue.stores['google_optimize_variations'].commit('setMode', 'edit_list_item');
 

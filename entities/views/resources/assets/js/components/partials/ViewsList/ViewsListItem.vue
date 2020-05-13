@@ -24,20 +24,8 @@
       },
     },
     methods: {
-      initViewsComponent() {
-        if (typeof window.Admin.vue.modulesComponents.$refs['google_optimize_views_ViewsListItemForm'] == 'undefined') {
-          window.Admin.vue.modulesComponents.modules.google_optimize_views.components = _.union(
-              window.Admin.vue.modulesComponents.modules.google_optimize_views.components,
-              [
-                {
-                  name: 'ViewsListItemForm',
-                  data: {},
-                },
-              ]);
-        }
-      },
       editView() {
-        this.initViewsComponent();
+        window.Admin.vue.helpers.initComponent('google_optimize_views', 'ViewsListItemForm', {});
 
         window.Admin.vue.stores['google_optimize_views'].commit('setMode', 'edit_list_item');
 

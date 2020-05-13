@@ -76,21 +76,8 @@
 
         return pages;
       },
-      initPagesComponent() {
-        if (typeof window.Admin.vue.modulesComponents.$refs['google_optimize_pages_PagesListItemForm'] == 'undefined') {
-          window.Admin.vue.modulesComponents.modules.google_optimize_pages.components = _.union(
-              window.Admin.vue.modulesComponents.modules.google_optimize_pages.components,
-              [
-                {
-                  name: 'PagesListItemForm',
-                  data: {},
-                },
-              ]
-          );
-        }
-      },
       addPage() {
-        this.initPagesComponent();
+        window.Admin.vue.helpers.initComponent('google_optimize_pages', 'PagesListItemForm', {});
 
         window.Admin.vue.stores['google_optimize_pages'].commit('setMode', 'add_list_item');
         window.Admin.vue.stores['google_optimize_pages'].commit('setPage', {});

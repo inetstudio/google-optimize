@@ -18,14 +18,14 @@
                         <template v-if="options.ready">
                             <base-dropdown
                                 label = "Тип страницы"
-                                name = "page_type"
-                                v-bind:attributes = "{
-                                    'data-placeholder': 'Выберите тип'
+                                v-bind:attributes="{
+                                    placeholder: 'Выберите тип страницы',
+                                    clearable: false,
+                                    reduce: option => option.value
                                 }"
                                 v-bind:options = "options.pagesTypes"
                                 v-bind:selected.sync="page.model.pageable_type"
                             />
-
 
                             <div class="has-warning" v-show="showSuggestions">
                                 <base-autocomplete
@@ -113,7 +113,11 @@
                     component.page = _.merge(JSON.parse(JSON.stringify(window.Admin.vue.stores['google_optimize_pages'].state.emptyPage)), currentData);
                 }
 
-                let routeName = $('#page_type').select2().find(':selected').attr('data-suggestions');
+              let typeIndex = _.findIndex(component.options.pagesTypes, function (type) {
+                return type.value === newValue;
+              });
+
+                let routeName = (typeIndex > -1) ? component.options.pagesTypes[typeIndex].attributes['data-suggestions'] : undefined;
                 let suggestionsURL = (typeof routeName !== 'undefined') ? String(route(routeName)) : '';
 
                 if (suggestionsURL) {

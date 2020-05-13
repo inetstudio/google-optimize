@@ -75,21 +75,8 @@
 
         return views;
       },
-      initViewsComponent() {
-        if (typeof window.Admin.vue.modulesComponents.$refs['google_optimize_views_ViewsListItemForm'] == 'undefined') {
-          window.Admin.vue.modulesComponents.modules.google_optimize_views.components = _.union(
-              window.Admin.vue.modulesComponents.modules.google_optimize_views.components,
-              [
-                {
-                  name: 'ViewsListItemForm',
-                  data: {},
-                },
-              ]
-          );
-        }
-      },
       addView() {
-        this.initViewsComponent();
+        window.Admin.vue.helpers.initComponent('google_optimize_views', 'ViewsListItemForm', {});
 
         window.Admin.vue.stores['google_optimize_views'].commit('setMode', 'add_list_item');
         window.Admin.vue.stores['google_optimize_views'].commit('setView', {});
