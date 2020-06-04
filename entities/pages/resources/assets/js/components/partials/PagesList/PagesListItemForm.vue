@@ -19,6 +19,7 @@
                             <base-dropdown
                                 label = "Тип страницы"
                                 v-bind:attributes="{
+                                    label: 'text',
                                     placeholder: 'Выберите тип страницы',
                                     clearable: false,
                                     reduce: option => option.value
