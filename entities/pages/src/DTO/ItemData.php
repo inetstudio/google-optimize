@@ -2,13 +2,13 @@
 
 namespace InetStudio\GoogleOptimizePackage\Pages\DTO;
 
-use Spatie\DataTransferObject\FlexibleDataTransferObject;
+use Spatie\DataTransferObject\DataTransferObject;
 use InetStudio\GoogleOptimizePackage\Pages\Contracts\DTO\ItemDataContract;
 
 /**
  * Class ItemData.
  */
-class ItemData extends FlexibleDataTransferObject implements ItemDataContract
+class ItemData extends DataTransferObject implements ItemDataContract
 {
     /**
      * @var int|string
