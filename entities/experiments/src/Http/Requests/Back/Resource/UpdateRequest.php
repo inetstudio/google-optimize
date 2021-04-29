@@ -63,7 +63,7 @@ class UpdateRequest extends FormRequest implements UpdateRequestContract
         $itemData = app()->make(
             'InetStudio\GoogleOptimizePackage\Experiments\Contracts\DTO\ItemDataContract',
             [
-                'parameters' => [
+                'args' => [
                     'id' => (int) $this->get('id'),
                     'name' => trim(strip_tags($this->get('name'))),
                     'event' => trim(strip_tags($this->get('event'))),
