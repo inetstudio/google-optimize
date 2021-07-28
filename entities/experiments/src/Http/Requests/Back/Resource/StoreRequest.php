@@ -3,29 +3,18 @@
 namespace InetStudio\GoogleOptimizePackage\Experiments\Http\Requests\Back\Resource;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use InetStudio\GoogleOptimizePackage\Pages\DTO\ItemData as PageItemData;
+use InetStudio\GoogleOptimizePackage\Views\DTO\ItemData as ViewItemData;
+use InetStudio\GoogleOptimizePackage\Variations\DTO\ItemData as VariationItemData;
 use InetStudio\GoogleOptimizePackage\Experiments\Contracts\Http\Requests\Back\Resource\StoreRequestContract;
 
-/**
- * Class StoreRequest.
- */
 class StoreRequest extends FormRequest implements StoreRequestContract
 {
-    /**
-     * Определить, авторизован ли пользователь для этого запроса.
-     *
-     * @return bool
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Сообщения об ошибках.
-     *
-     * @return array
-     */
     public function messages(): array
     {
         return [
@@ -39,11 +28,6 @@ class StoreRequest extends FormRequest implements StoreRequestContract
         ];
     }
 
-    /**
-     * Правила проверки запроса.
-     *
-     * @return array
-     */
     public function rules(): array
     {
         return [
@@ -53,14 +37,26 @@ class StoreRequest extends FormRequest implements StoreRequestContract
         ];
     }
 
-    /**
-     * Handle a passed validation attempt.
-     *
-     * @throws BindingResolutionException
-     */
     protected function passedValidation()
     {
-        $itemData = app()->make(
+        $variations = [];
+        $pages = [];
+
+        foreach (json_decode($this->get('variations'), true) as $variation) {
+            $views = [];
+            foreach ($variation['views'] ?? [] as $view) {
+                $views[] = new ViewItemData($view);
+            }
+            $variation['views'] = $views;
+
+            $variations[] = new VariationItemData($variation);
+        }
+
+        foreach (json_decode($this->get('pages'), true) as $page) {
+            $pages[] = new PageItemData($page);
+        }
+
+        $itemData = resolve(
             'InetStudio\GoogleOptimizePackage\Experiments\Contracts\DTO\ItemDataContract',
             [
                 'args' => [
@@ -69,8 +65,8 @@ class StoreRequest extends FormRequest implements StoreRequestContract
                     'event' => trim(strip_tags($this->get('event'))),
                     'experiment_id' => trim(strip_tags($this->get('experiment_id'))),
                     'is_active' => (int) trim(strip_tags($this->get('is_active'))),
-                    'variations' => json_decode($this->get('variations'), true),
-                    'pages' => json_decode($this->get('pages'), true),
+                    'variations' => $variations,
+                    'pages' => $pages,
                 ],
             ]
         );

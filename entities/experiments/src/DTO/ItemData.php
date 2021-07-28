@@ -3,45 +3,27 @@
 namespace InetStudio\GoogleOptimizePackage\Experiments\DTO;
 
 use Spatie\DataTransferObject\DataTransferObject;
+use InetStudio\GoogleOptimizePackage\Pages\DTO\ItemData as PageItemData;
 use InetStudio\GoogleOptimizePackage\Experiments\Contracts\DTO\ItemDataContract;
+use InetStudio\GoogleOptimizePackage\Variations\DTO\ItemData as VariationItemData;
 
-/**
- * Class ItemData.
- */
 class ItemData extends DataTransferObject implements ItemDataContract
 {
-    /**
-     * @var int
-     */
-    public $id;
+    public int $id;
 
-    /**
-     * @var string
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string
-     */
-    public $event;
+    public string $event;
 
-    /**
-     * @var string
-     */
-    public $experiment_id;
+    public string $experiment_id;
 
-    /**
-     * @var int
-     */
-    public $is_active;
+    public int $is_active;
 
-    /**
-     * @var \InetStudio\GoogleOptimizePackage\Variations\DTO\ItemData[]
-     */
+    /** @var \InetStudio\GoogleOptimizePackage\Variations\DTO\ItemData[] */
+    #[CastWith(ArrayCaster::class, itemType: VariationItemData::class)]
     public $variations;
 
-    /**
-     * @var \InetStudio\GoogleOptimizePackage\Pages\DTO\ItemData[]
-     */
+    /** @var \InetStudio\GoogleOptimizePackage\Pages\DTO\ItemData[] */
+    #[CastWith(ArrayCaster::class, itemType: PageItemData::class)]
     public $pages;
 }

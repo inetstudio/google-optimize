@@ -3,30 +3,18 @@
 namespace InetStudio\GoogleOptimizePackage\Variations\DTO;
 
 use Spatie\DataTransferObject\DataTransferObject;
+use InetStudio\GoogleOptimizePackage\Views\DTO\ItemData as ViewItemData;
 use InetStudio\GoogleOptimizePackage\Variations\Contracts\DTO\ItemDataContract;
 
-/**
- * Class ItemData.
- */
 class ItemData extends DataTransferObject implements ItemDataContract
 {
-    /**
-     * @var int|string
-     */
-    public $id;
+    public int|string $id;
 
-    /**
-     * @var string
-     */
-    public $value;
+    public string $value;
 
-    /**
-     * @var int
-     */
-    public $experiment_id;
+    public int $experiment_id;
 
-    /**
-     * @var \InetStudio\GoogleOptimizePackage\Views\DTO\ItemData[]
-     */
+    /** @var \InetStudio\GoogleOptimizePackage\Views\DTO\ItemData[] */
+    #[CastWith(ArrayCaster::class, itemType: ViewItemData::class)]
     public $views;
 }
