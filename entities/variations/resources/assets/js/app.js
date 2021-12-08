@@ -1,16 +1,16 @@
 require('./stores/variations');
 
-Vue.component(
+window.Vue.component(
     'VariationsList',
-    require('./components/partials/VariationsList/VariationsList.vue').default,
+    () => import('./components/partials/VariationsList/VariationsList.vue'),
 );
-Vue.component(
+window.Vue.component(
     'VariationsListItem',
-    require('./components/partials/VariationsList/VariationsListItem.vue').default,
+    () => import('./components/partials/VariationsList/VariationsListItem.vue'),
 );
-Vue.component(
+window.Vue.component(
     'VariationsListItemForm',
-    require('./components/partials/VariationsList/VariationsListItemForm.vue').default,
+    () => import('./components/partials/VariationsList/VariationsListItemForm.vue'),
 );
 
 let variations = require('./package/variations');

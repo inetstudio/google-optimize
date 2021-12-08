@@ -1,2 +1,3 @@
-let experiments = require('./package/experiments');
+import {experiments} from './package/experiments';
+
 experiments.init();

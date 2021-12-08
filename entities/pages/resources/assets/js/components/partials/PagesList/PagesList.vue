@@ -14,6 +14,9 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+  import Swal from 'sweetalert2';
+
   export default {
     name: 'PagesList',
     props: {
@@ -67,7 +70,7 @@
             }
           };
 
-          data.hash = window.hash(data.model);
+          data.hash = hash(data.model);
 
           pages.push(data);
         });
@@ -89,9 +92,9 @@
       removePage(payload) {
         let component = this;
 
-        swal({
+        Swal.fire({
           title: 'Вы уверены?',
-          type: 'warning',
+          icon: 'warning',
           showCancelButton: true,
           cancelButtonText: 'Отмена',
           confirmButtonColor: '#DD6B55',
@@ -115,7 +118,7 @@
 
         let storePage = JSON.parse(JSON.stringify(window.Admin.vue.stores['google_optimize_pages'].state.page));
         storePage.model.experiment_id = component.experimentIdProp;
-        storePage.hash = window.hash(storePage.model);
+        storePage.hash = hash(storePage.model);
 
         let index = component.getPageIndex(storePage.model.id);
 

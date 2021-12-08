@@ -44,6 +44,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
   export default {
     name: 'VariationsListItemForm',
     data() {
@@ -65,7 +67,7 @@
           this.variation.isModified = !(!newValue
               || typeof newValue.id === 'undefined'
               || typeof oldValue.id === 'undefined'
-              || this.variation.hash === window.hash(newValue));
+              || this.variation.hash === hash(newValue));
         },
         deep: true,
       },

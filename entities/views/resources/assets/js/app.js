@@ -1,16 +1,16 @@
 require('./stores/views');
 
-Vue.component(
+window.Vue.component(
     'ViewsList',
-    require('./components/partials/ViewsList/ViewsList.vue').default,
+    () => import('./components/partials/ViewsList/ViewsList.vue'),
 );
-Vue.component(
+window.Vue.component(
     'ViewsListItem',
-    require('./components/partials/ViewsList/ViewsListItem.vue').default,
+    () => import('./components/partials/ViewsList/ViewsListItem.vue'),
 );
-Vue.component(
+window.Vue.component(
     'ViewsListItemForm',
-    require('./components/partials/ViewsList/ViewsListItemForm.vue').default,
+    () => import('./components/partials/ViewsList/ViewsListItemForm.vue'),
 );
 
 let views = require('./package/views');

@@ -1,4 +1,7 @@
-window.Admin.vue.stores['google_optimize_views'] = new Vuex.Store({
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
+
+window.Admin.vue.stores['google_optimize_views'] = new window.Vuex.Store({
   state: {
     emptyView: {
       model: {
@@ -17,10 +20,10 @@ window.Admin.vue.stores['google_optimize_views'] = new Vuex.Store({
   mutations: {
     setView(state, view) {
       let emptyView = JSON.parse(JSON.stringify(state.emptyView));
-      emptyView.model.id = UUID.generate();
+      emptyView.model.id = uuidv4();
 
       let resultView = _.merge(emptyView, view);
-      resultView.hash = window.hash(resultView.model);
+      resultView.hash = hash(resultView.model);
 
       state.view = resultView;
     },

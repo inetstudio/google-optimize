@@ -66,6 +66,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
     export default {
         name: 'PagesListItemForm',
         data() {
@@ -92,7 +94,7 @@
                     this.page.isModified = ! (! newValue
                         || typeof newValue.id === 'undefined'
                         || typeof oldValue.id === 'undefined'
-                        || this.page.hash === window.hash(newValue));
+                        || this.page.hash === hash(newValue));
                 },
                 deep: true
             },

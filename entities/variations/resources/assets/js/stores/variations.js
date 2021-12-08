@@ -1,4 +1,7 @@
-window.Admin.vue.stores['google_optimize_variations'] = new Vuex.Store({
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
+
+window.Admin.vue.stores['google_optimize_variations'] = new window.Vuex.Store({
   state: {
     emptyVariation: {
       model: {
@@ -17,10 +20,10 @@ window.Admin.vue.stores['google_optimize_variations'] = new Vuex.Store({
   mutations: {
     setVariation(state, variation) {
       let emptyVariation = JSON.parse(JSON.stringify(state.emptyVariation));
-      emptyVariation.model.id = UUID.generate();
+      emptyVariation.model.id = uuidv4();
 
       let resultVariation = _.merge(emptyVariation, variation);
-      resultVariation.hash = window.hash(resultVariation.model);
+      resultVariation.hash = hash(resultVariation.model);
 
       state.variation = resultVariation;
     },

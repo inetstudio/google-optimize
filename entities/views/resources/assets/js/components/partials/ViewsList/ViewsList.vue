@@ -14,6 +14,9 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+  import Swal from 'sweetalert2';
+
   export default {
     name: 'ViewsList',
     props: {
@@ -66,7 +69,7 @@
             }
           };
 
-          data.hash = window.hash(data.model);
+          data.hash = hash(data.model);
 
           views.push(data);
         });
@@ -88,9 +91,9 @@
       removeView(payload) {
         let component = this;
 
-        swal({
+        Swal.fire({
           title: 'Вы уверены?',
-          type: 'warning',
+          icon: 'warning',
           showCancelButton: true,
           cancelButtonText: 'Отмена',
           confirmButtonColor: '#DD6B55',
@@ -114,7 +117,7 @@
 
         let storeView = JSON.parse(JSON.stringify(window.Admin.vue.stores['google_optimize_views'].state.view));
         storeView.model.variation_id = component.variationIdProp;
-        storeView.hash = window.hash(storeView.model);
+        storeView.hash = hash(storeView.model);
 
         let index = component.getViewIndex(storeView.model.id);
 

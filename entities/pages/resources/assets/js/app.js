@@ -1,16 +1,16 @@
 require('./stores/pages');
 
-Vue.component(
+window.Vue.component(
     'PagesList',
-    require('./components/partials/PagesList/PagesList.vue').default,
+    () => import('./components/partials/PagesList/PagesList.vue'),
 );
-Vue.component(
+window.Vue.component(
     'PagesListItem',
-    require('./components/partials/PagesList/PagesListItem.vue').default,
+    () => import('./components/partials/PagesList/PagesListItem.vue'),
 );
-Vue.component(
+window.Vue.component(
     'PagesListItemForm',
-    require('./components/partials/PagesList/PagesListItemForm.vue').default,
+    () => import('./components/partials/PagesList/PagesListItemForm.vue'),
 );
 
 let pages = require('./package/pages');

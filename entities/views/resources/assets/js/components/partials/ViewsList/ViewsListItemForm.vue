@@ -42,6 +42,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
   export default {
     name: 'ViewsListItemForm',
     data() {
@@ -63,7 +65,7 @@
           this.view.isModified = !(!newValue
               || typeof newValue.id === 'undefined'
               || typeof oldValue.id === 'undefined'
-              || this.view.hash === window.hash(newValue));
+              || this.view.hash === hash(newValue));
         },
         deep: true,
       },
