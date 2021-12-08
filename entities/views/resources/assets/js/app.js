@@ -1,3 +1,5 @@
+import {views} from './package/views';
+
 require('./stores/views');
 
 window.Vue.component(
@@ -13,5 +15,4 @@ window.Vue.component(
     () => import('./components/partials/ViewsList/ViewsListItemForm.vue'),
 );
 
-let views = require('./package/views');
 views.init();

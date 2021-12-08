@@ -1,3 +1,5 @@
+import {variations} from './package/variations';
+
 require('./stores/variations');
 
 window.Vue.component(
@@ -13,5 +15,4 @@ window.Vue.component(
     () => import('./components/partials/VariationsList/VariationsListItemForm.vue'),
 );
 
-let variations = require('./package/variations');
 variations.init();

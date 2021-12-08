@@ -1,3 +1,5 @@
+import {pages} from './package/pages';
+
 require('./stores/pages');
 
 window.Vue.component(
@@ -13,5 +15,4 @@ window.Vue.component(
     () => import('./components/partials/PagesList/PagesListItemForm.vue'),
 );
 
-let pages = require('./package/pages');
 pages.init();

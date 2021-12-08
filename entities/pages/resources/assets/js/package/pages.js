@@ -1,6 +1,5 @@
-let pages = {};
+export let pages = {
+  init: function () {
 
-pages.init = function() {
+  }
 };
-
-module.exports = pages;

@@ -1,6 +1,5 @@
-let variations = {};
+export let variations = {
+  init: function () {
 
-variations.init = function() {
+  }
 };
-
-module.exports = variations;

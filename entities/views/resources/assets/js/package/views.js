@@ -1,6 +1,5 @@
-let views = {};
+export let views = {
+  init: function () {
 
-views.init = function() {
+  }
 };
-
-module.exports = views;
